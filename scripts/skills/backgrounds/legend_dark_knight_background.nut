@@ -1,9 +1,9 @@
-this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/character_background", {
+this.legend_dark_knight_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = "background.mod_dark_knight.dark_knight";
+		this.m.ID = "background.dark_knight";
 		this.m.Name = "Dark Knight";
 		this.m.Icon = "ui/backgrounds/background_dark_knight.png";
 		this.m.HiringCost = 3500;
