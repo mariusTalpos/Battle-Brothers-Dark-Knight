@@ -4,7 +4,7 @@ this.legends_dark_knight_scenario <- this.inherit("scripts/scenarios/world/start
 	{
 		this.m.ID = "scenario.legends_dark_knight";
 		this.m.Name = "Dark Knight";
-		this.m.Description = "[p=c][img]gfx/ui/events/event_35.png[/img][/p][p]The evils of this world are ruthless and brutal. You will be worse.\n\n[color=#bcad8c]Lone Wolf:[/color] Start with as a fledgeling dark knight and great equipment, but low funds.\n[color=#bcad8c]Elite Few:[/color] Can never have more than 12 men in your roster but gain the ability to recruit other dark knights.\n[color=#bcad8c]Avatar:[/color] If your dark knight dies, the campaign ends.[/p]";
+		this.m.Description = "[p=c][img]gfx/ui/events/event_35.png[/img][/p][p]The evils of this world are ruthless and brutal. You will be worse.\n\n[color=#bcad8c]Lone Wolf:[/color] Start with as a fledgeling dark knight and great equipment, but low funds.\n[color=#bcad8c]Dark Missionary:[/color] Start with a small roster size but gain the ability to recruit other dark knights.\n[color=#bcad8c]Avatar:[/color] If your dark knight dies, the campaign ends.[/p]";
 		this.m.Difficulty = 2;
 		this.m.Order = 110;
 		this.m.IsFixedLook = true;
@@ -19,11 +19,11 @@ this.legends_dark_knight_scenario <- this.inherit("scripts/scenarios/world/start
 		local bro;
 		bro = roster.create("scripts/entity/tactical/player");
 		bro.setStartValuesEx([
-			"legend_crusader_background"
+			"legend_dark_knight_background"
 		]); //skills on start
 		::Legends.Traits.grant(bro, ::Legends.Trait.Player);
 		::Legends.Traits.remove(bro, ::Legends.Trait.Loyal);
-		// this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.FortifiedMind);
+		// this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.FortifiedMind); TODO: maybe add later
 		bro.m.PerkPointsSpent += 3;
 		bro.setPlaceInFormation(4);
 		bro.setVeteranPerks(2);

@@ -1,0 +1,54 @@
+this.legend_crusader_intro_event <- this.inherit("scripts/events/event", {
+	m = {},
+	function create()
+	{
+		this.m.ID = "event.legend_dark_knight_scenario_intro";
+		this.m.IsSpecial = true;
+		this.m.Screens.push({ //•
+			ID = "A",
+			Text = "[img]gfx/ui/events/event_24.png[/img]The world festers beneath a shroud of corruption, and you have walked its shadowed roads as both witness and judge. The bishop once spoke of salvation, but you have seen only the hypocrisy of the pious and the rot of the righteous. The darkness is not a plague to be cured, but a force to be mastered. You have cast aside the frail light of faith, forging your will in the crucible of despair.\n\nNow, as the final dusk approaches, you stand ready to claim vengeance upon those who let the world decay. The source of the corruption lies ahead, and you will meet it not with prayer, but with steel and fury. Let the world tremble, for a brutal reckoning is at hand.",
+			Image = "",
+			Banner = "",
+			List = [],
+			Characters = [],
+			Options = [
+				{
+					Text = "What awaits humanity in the darkest corners of the world?",
+					function getResult( _event )
+					{
+						return 0;
+					}
+
+				}
+			],
+			function start( _event )
+			{
+				this.logInfo("Unlocking scouting");
+				this.World.Flags.set("HasLegendCampScouting", true);
+			}
+		});
+	}
+
+	function onUpdateScore()
+	{
+		return;
+	}
+
+	function onPrepare()
+	{
+		this.m.Title = "The Dying Light";
+	}
+
+	function onPrepareVariables( _vars )
+	{
+		_vars.push([
+			"home",
+			this.World.Flags.get("HomeVillage")
+		]);
+	}
+
+	function onClear()
+	{
+	}
+
+});
