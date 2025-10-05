@@ -47,14 +47,6 @@ this.abyssal_drain <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function isHidden()
-	{
-		// ...existing code...
-	}
-
-	function onUse(_user, _targetTile)
-	{
-		// ...existing code...
-	}
+	// TODO: Consume a corpse on the battlefield to heal based on resolve
 
 });

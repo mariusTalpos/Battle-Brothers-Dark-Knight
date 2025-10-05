@@ -68,7 +68,7 @@ this.blood_weapon <- this.inherit("scripts/skills/skill", {
 	{
 		local myTile = _user.getTile();
 
-		// Subtract hitpoints cost
+		// Subtract hitpoints cost (TODO)
 		// Add Blood Weapon effect
 		this.getContainer().add(this.new("scripts/skills/effects/dark_knight_blood_weapon"));
 		return true;

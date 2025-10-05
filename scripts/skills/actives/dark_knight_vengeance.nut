@@ -50,7 +50,7 @@ this.vengeance <- this.inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		// Hide if no melee weapon is equipped or if vengeance is already active
+		// Hide if no melee weapon is equipped or if vengeance is already active (TODO)
 		// local canUse = ::Legends.Effects.get(this, ::Legends.Effect.LegendKnockbackPrepared);
 		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
 		local hasMelee = item == null || item.isItemType(this.Const.Items.ItemType.MeleeWeapon);
@@ -61,7 +61,7 @@ this.vengeance <- this.inherit("scripts/skills/skill", {
 	{
 		local myTile = _user.getTile();
 
-		// Subtract hitpoints cost
+		// Subtract hitpoints cost (TODO)
 		// Add Vengeance effect
 		this.getContainer().add(this.new("scripts/skills/effects/dark_knight_vengeance"));
 		return true;
