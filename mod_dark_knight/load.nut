@@ -4,3 +4,7 @@
 // load the config folder which contains new Const added by this mod
 foreach (file in ::IO.enumerateFiles("mod_dark_knight/config"))
 	::include(file);
+
+// BBBUILDER_DEBUG_START
+::logInfo("[Dark Knight Mod] Registered successfully.");
+// BBBUILDER_DEBUG_STOP

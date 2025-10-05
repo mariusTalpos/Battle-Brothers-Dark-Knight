@@ -59,6 +59,9 @@ this.vengeance <- this.inherit("scripts/skills/skill", {
 
 	function onUse(_user, _targetTile)
 	{
+		// BBBUILDER_DEBUG_START
+		::logDebug("[Dark Knight Mod] Vengeance skill used by " + _user.getName() + ".");
+		// BBBUILDER_DEBUG_STOP
 		local myTile = _user.getTile();
 
 		// Subtract hitpoints cost (TODO)

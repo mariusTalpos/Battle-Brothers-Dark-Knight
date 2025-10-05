@@ -49,4 +49,12 @@ this.abyssal_drain <- this.inherit("scripts/skills/skill", {
 
 	// TODO: Consume a corpse on the battlefield to heal based on resolve
 
+	function onUse(_user, _targetTile)
+	{
+		// BBBUILDER_DEBUG_START
+		::logDebug("[Dark Knight Mod] Abyssal Drain skill used by " + _user.getName() + ".");
+		// BBBUILDER_DEBUG_STOP
+		// ...existing code...
+	}
+
 });
