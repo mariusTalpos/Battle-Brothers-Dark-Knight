@@ -20,7 +20,8 @@ this.dark_knight_blood_weapon_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsVisibleTileNeeded = false;
 		this.m.IsWeaponSkill = true;
 		this.m.ActionPointCost = 0;
-		this.m.HitpointsCost = 10;
+		// this.m.HitpointsCost = 10; TODO: Implement hitpoints cost on use
+		this.m.FatigueCost = 0;
 		this.m.MinRange = 0;
 		this.m.MaxRange = 0;
 		this.m.IsHidden = false;
@@ -61,7 +62,7 @@ this.dark_knight_blood_weapon_skill <- this.inherit("scripts/skills/skill", {
 		// local canUse = ::Legends.Effects.get(this, ::Legends.Effect.LegendKnockbackPrepared);
 		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
 		local hasMelee = item == null || item.isItemType(this.Const.Items.ItemType.MeleeWeapon);
-		return !((!this.Tactical.isActive() || canUse == null) && hasMelee);
+		return !((!this.Tactical.isActive()) && hasMelee);
 	}
 
 	function onUse(_user, _targetTile)

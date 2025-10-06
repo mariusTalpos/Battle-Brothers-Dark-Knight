@@ -23,7 +23,7 @@ this.perk_dark_knight_blood_weapon <- this.inherit("scripts/skills/skill", {
 		// BBBUILDER_DEBUG_STOP
 		if (!this.m.Container.hasSkill("actives.dark_knight_blood_weapon"))
 		{
-			this.m.Container.add(this.new("scrips/skills/actives/dark_knight_blood_weapon_skill"));
+			this.m.Container.add(this.new("scripts/skills/actives/dark_knight_blood_weapon_skill"));
 		}
 	}
 

@@ -88,7 +88,7 @@ this.legend_dark_knight_background <- this.inherit("scripts/skills/backgrounds/c
 				this.Const.Perks.LargeTree,
 				this.Const.Perks.MartyrTree,
 				this.Const.Perks.FitTree,
-				this.Const.Perks.DeviousTree,
+				// this.Const.Perks.DeviousTree,
 				this.Const.Perks.TrainedTree,
 			],
 			Enemy = [
@@ -105,19 +105,19 @@ this.legend_dark_knight_background <- this.inherit("scripts/skills/backgrounds/c
 			[
 				::Legends.Perk.Student,
 				::Legends.Perk.Pathfinder,
-				::Legends.Perk.BagsAndBelts,
+				// ::Legends.Perk.BagsAndBelts,
 				// ::Legends.Perk.LegendComposure,
 				::Legends.Perk.Adrenaline,
 			],
 			[
-				::Legends.Perk.Dodge,
-				::Legends.Perk.RallyTheTroops,
+				// ::Legends.Perk.Dodge,
+				// ::Legends.Perk.RallyTheTroops,
 				::Legends.Perk.LegendTrueBeliever,
 			],
 			[
-				::Legends.Perk.LegendFavouredEnemySkeleton,
-				::Legends.Perk.LegendFavouredEnemyZombie,
-				::Legends.Perk.LegendFavouredEnemyVampire
+				// ::Legends.Perk.LegendFavouredEnemySkeleton,
+				// ::Legends.Perk.LegendFavouredEnemyZombie,
+				// ::Legends.Perk.LegendFavouredEnemyVampire
 			],
 			[],
 			[
