@@ -1,4 +1,4 @@
-this.dark_knight_vengeance <- this.inherit("scripts/skills/skill", {
+this.dark_knight_vengeance_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{

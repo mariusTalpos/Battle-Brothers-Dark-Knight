@@ -19,9 +19,9 @@ this.perk_dark_knight_vengeance <- this.inherit("scripts/skills/skill", {
 		// BBBUILDER_DEBUG_START
 		::logInfo("[Dark Knight Mod] Vengeance perk taken.");
 		// BBBUILDER_DEBUG_STOP
-		if (!this.m.Container.hasActive("actives.dark_knight_vengeance"))
+		if (!this.m.Container.hasSkill("actives.dark_knight_vengeance"))
 		{
-			this.m.Container.addActive(this.new("scripts/skills/actives/dark_knight_vengeance"));
+			this.m.Container.add(this.new("scripts/skills/actives/dark_knight_vengeance_skill"));
 		}
 	}
 

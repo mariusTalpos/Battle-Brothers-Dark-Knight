@@ -1,4 +1,4 @@
-this.dark_knight_blood_weapon <- this.inherit("scripts/skills/skill", {
+this.dark_knight_blood_weapon_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{

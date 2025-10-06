@@ -21,9 +21,9 @@ this.perk_dark_knight_blood_weapon <- this.inherit("scripts/skills/skill", {
 		// BBBUILDER_DEBUG_START
 		::logInfo("[Dark Knight Mod] Blood Weapon perk taken.");
 		// BBBUILDER_DEBUG_STOP
-		if (!this.m.Container.hasActive("actives.dark_knight_blood_weapon"))
+		if (!this.m.Container.hasSkill("actives.dark_knight_blood_weapon"))
 		{
-			this.m.Container.addActive(this.new("scrips/skills/actives/dark_knight_blood_weapon"));
+			this.m.Container.add(this.new("scrips/skills/actives/dark_knight_blood_weapon_skill"));
 		}
 	}
 
