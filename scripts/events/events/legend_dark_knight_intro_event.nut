@@ -1,4 +1,4 @@
-this.legend_crusader_intro_event <- this.inherit("scripts/events/event", {
+this.legend_dark_knight_intro_event <- this.inherit("scripts/events/event", {
 	m = {},
 	function create()
 	{
@@ -13,7 +13,7 @@ this.legend_crusader_intro_event <- this.inherit("scripts/events/event", {
 			Characters = [],
 			Options = [
 				{
-					Text = "What awaits humanity in the darkest corners of the world?",
+					Text = "Steel is my faith, and vengeance my prayer.",
 					function getResult( _event )
 					{
 						return 0;
@@ -36,7 +36,7 @@ this.legend_crusader_intro_event <- this.inherit("scripts/events/event", {
 
 	function onPrepare()
 	{
-		this.m.Title = "The Dying Light";
+		this.m.Title = "The Black Oath";
 	}
 
 	function onPrepareVariables( _vars )

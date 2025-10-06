@@ -1,8 +1,8 @@
-this.vengeance <- this.inherit("scripts/skills/skill", {
+this.dark_knight_vengeance <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.vengeance";
+		this.m.ID = "actives.dark_knight_vengeance";
 		this.m.Name = "Vengeance";
 		this.m.Description = "Your pain fuels your wrath. Retaliate against enemies who hit you at the cost of defence for a single round. Retaliation attacks from this skill deal bonus damage equal to your lost hitpoints.";
 		this.m.Icon = "skills/dark_knight_vengeance.png";

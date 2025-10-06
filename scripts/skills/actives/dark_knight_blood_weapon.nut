@@ -1,8 +1,8 @@
-this.blood_weapon <- this.inherit("scripts/skills/skill", {
+this.dark_knight_blood_weapon <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.blood_weapon";
+		this.m.ID = "actives.dark_knight_blood_weapon";
 		this.m.Name = "Blood Weapon";
 		this.m.Description = "Infuse your weapon with the spite of your own injuries! Your next melee attack deals bonus damage at the cost of your own hitpoints. The bonus damage scales with your hitpoints.";
 		this.m.Icon = "skills/dark_knight_blood_weapon.png";

@@ -98,7 +98,7 @@ this.legends_dark_knight_scenario <- this.inherit("scripts/scenarios/world/start
 			this.Music.setTrackList([
 				"music/noble_02.ogg"
 			], this.Const.Music.CrossFadeTime);
-			this.World.Events.fire("event.legend_crusader_scenario_intro");
+			this.World.Events.fire("event.legend_dark_knight_scenario_intro");
 		}, null);
 
 	}
@@ -106,7 +106,7 @@ this.legends_dark_knight_scenario <- this.inherit("scripts/scenarios/world/start
 	function onInit() //starting slots
 	{
 		this.starting_scenario.onInit();
-		this.World.Flags.set("IsLegendsCrusader", true);
+		// this.World.Flags.set("IsLegendsCrusader", true);
 	}
 
 	function onCombatFinished() //is crusader kill?
@@ -188,7 +188,8 @@ this.legends_dark_knight_scenario <- this.inherit("scripts/scenarios/world/start
 
 	function onBuildPerkTree( _background )
 	{
-		this.addScenarioPerk(_background, this.Const.Perks.PerkDefs.FortifiedMind, 2, _background.isBackgroundType(this.Const.BackgroundType.Crusader));
+		// TODO: define our own scenario perk
+		// this.addScenarioPerk(_background, this.Const.Perks.PerkDefs.FortifiedMind, 2, _background.isBackgroundType(this.Const.BackgroundType.Crusader));
 	}
 
 

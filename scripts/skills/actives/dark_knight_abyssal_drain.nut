@@ -1,8 +1,8 @@
-this.abyssal_drain <- this.inherit("scripts/skills/skill", {
+this.dark_knight_abyssal_drain <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.abyssal_drain";
+		this.m.ID = "actives.dark_knight_abyssal_drain";
 		this.m.Name = "Abyssal Drain";
 		this.m.Description = "Drain the smoldering embers of life from your slain enemies. Destroy a corpse on the battlefield, healing yourself scaling with resolve.";
 		this.m.Icon = "skills/dark_knight_abyssal_drain.png";

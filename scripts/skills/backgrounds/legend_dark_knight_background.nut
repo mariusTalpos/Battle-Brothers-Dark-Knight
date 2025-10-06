@@ -32,18 +32,17 @@ this.legend_dark_knight_background <- this.inherit("scripts/skills/backgrounds/c
 			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
 			::Legends.Traits.getID(::Legends.Trait.LegendLight),
 			::Legends.Traits.getID(::Legends.Trait.Disloyal),
-			::Legends.Traits.getID(::Legends.Trait.Hesitant)
 			::Legends.Traits.getID(::Legends.Trait.Optimist),
 			::Legends.Traits.getID(::Legends.Trait.Teamplayer),
 			::Legends.Traits.getID(::Legends.Trait.LegendSlack),
 			::Legends.Traits.getID(::Legends.Trait.LegendFrail),
 			::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople),
 			::Legends.Traits.getID(::Legends.Trait.LegendFearDark),
-			::Legends.Traits.getID(::Legends.Trait.Fat)
-			::Legends.Traits.getID(::Legends.Trait.EagleEyes)
-			::Legends.Traits.getID(::Legends.Trait.NightOwl)
-			::Legends.Traits.getID(::Legends.Trait.Lucky)
-			::Legends.Traits.getID(::Legends.Trait.LegendSureShot)
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.EagleEyes),
+			::Legends.Traits.getID(::Legends.Trait.NightOwl),
+			::Legends.Traits.getID(::Legends.Trait.Lucky),
+			// ::Legends.Traits.getID(::Legends.Trait.LegendSureShot)
 		];
 		this.m.ExcludedTalents = [
 			this.Const.Attributes.RangedSkill,
@@ -246,7 +245,6 @@ function onAddEquipment()
 		talents.resize(this.Const.Attributes.COUNT, 0);
 		talents[this.Const.Attributes.Hitpoints] = 3;
 		talents[this.Const.Attributes.MeleeSkill] = 3;
-		talents[this.Const.Attributes.Bravery] = 1;
 		talents[this.Const.Attributes.Bravery] = 1;
 		this.getContainer().getActor().fillTalentValues(2, true);
 		local items = this.getContainer().getActor().getItems();
