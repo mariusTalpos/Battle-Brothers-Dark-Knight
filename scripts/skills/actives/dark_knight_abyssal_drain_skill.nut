@@ -16,9 +16,9 @@ this.dark_knight_abyssal_drain_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsTargeted = true;
 		this.m.IsStacking = false;
 		this.m.IsAttack = false;
-		this.m.IsIgnoredAsAOO = true;
+this.m.IsIgnoredAsAOO = true;
 		this.m.IsVisibleTileNeeded = true;
-		this.m.ActionPointCost = 6;
+this.m.ActionPointCost = 6;
 		this.m.FatigueCost = 20;
 		this.m.MinRange = 0;
 		this.m.MaxRange = 4;
@@ -51,9 +51,9 @@ this.dark_knight_abyssal_drain_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse(_user, _targetTile)
 	{
-		// BBBUILDER_DEBUG_START
+		
 		::logDebug("[Dark Knight Mod] Abyssal Drain skill used by " + _user.getName() + ".");
-		// BBBUILDER_DEBUG_STOP
+		
 		// ...existing code...
 	}
 

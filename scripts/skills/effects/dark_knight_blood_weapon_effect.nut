@@ -1,7 +1,8 @@
 this.dark_knight_blood_weapon_effect <- this.inherit("scripts/skills/skill", {
-	m = {},
-	function create()
-	{
+	m = {
+		AttacksLeft = 1
+	},
+	function create() {
 		this.m.ID = "effects.dark_knight_blood_weapon";
 		this.m.Name = "Blood Weapon";
 		this.m.Icon = "ui/perks/perk_dark_knight_blood_weapon.png";
@@ -12,15 +13,12 @@ this.dark_knight_blood_weapon_effect <- this.inherit("scripts/skills/skill", {
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "The blood price has been payed. This character's next melee attack will deal bonus damage scaling with their missing hitpoints";
 	}
 
-	function getTooltip()
-	{
-		return [
-			{
+	function getTooltip() {
+		return [{
 				id = 1,
 				type = "title",
 				text = this.getName()
@@ -50,27 +48,26 @@ this.dark_knight_blood_weapon_effect <- this.inherit("scripts/skills/skill", {
 			this.removeSelf();
 	}
 
-	function onAnySkillUsed(_skill, _targetEntity, _properties)
-	{
-		local actor = this.getContainer().getActor();
-		if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
-			return;
-		if (this.Tactical.TurnSequenceBar.getActiveEntity() != null && this.Tactical.TurnSequenceBar.getActiveEntity().getID() == actor.getID())
-			return;
-		if (this.m.isPerformingPayback == true)
-		{
-			// Damage bonus based on missing hitpoints
-			local missingHP = actor.getHitpointsMax() - actor.getHitpoints();
-			local bonusMult = 1.0 + (missingHP * 0.01); // Example: +1% damage per missing HP
-			_properties.DamageTotalMult *= bonusMult;
-		}
-	}
-
 	function onTargetMissed(_skill, _targetEntity) {
 
 		--this.m.AttacksLeft;
 		if (this.m.AttacksLeft <= 0)
 			this.removeSelf();
+	}
+
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
+		if (_skill.isAttack()) {
+			local actor = this.getContainer().getActor();
+			local currentHitpoints = actor.getHitpoints(); // this returns current hitpoints, not max
+			local hitpointMax = actor.getHitpointsMax(); // this returns actors max HP but without mods like colossus
+
+			// Damage bonus based on missing hitpoints
+			local missingHP = hitpointMax - currentHitpoints;
+			::logDebug("[Dark Knight Mod] Blood Weapon effect: missingHP=" + missingHP + ", HP Max=" + hitpointMax + ", HP Current=" + currentHitpoints);
+			local bonusMult = 1.0 + (missingHP * 0.002); // Example: +0.2% damage per missing HP
+			::logDebug("[Dark Knight Mod] Blood Weapon effect: bonusMult=" + bonusMult);
+			_properties.DamageTotalMult *= bonusMult; //this works
+		}
 	}
 
 });

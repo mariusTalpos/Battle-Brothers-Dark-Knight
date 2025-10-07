@@ -16,9 +16,9 @@ this.perk_dark_knight_living_dead <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		// BBBUILDER_DEBUG_START
+
 		::logInfo("[Dark Knight Mod] Living Dead perk taken.");
-		// BBBUILDER_DEBUG_STOP
+
 		// TODO: Create Living dead cheat death passive skill similar to 9 lives
 		// if (!this.m.Container.hasSkill("actives.dark_knight_living_dead"))
 		// {

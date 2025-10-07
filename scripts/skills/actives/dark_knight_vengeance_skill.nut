@@ -16,12 +16,12 @@ this.dark_knight_vengeance_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsTargeted = false;
 		this.m.IsStacking = false;
 		this.m.IsAttack = false;
-		this.m.IsIgnoredAsAOO = true;
+this.m.IsIgnoredAsAOO = true;
 		this.m.IsVisibleTileNeeded = false;
-		this.m.IsWeaponSkill = true;
+this.m.IsWeaponSkill = true;
 		this.m.ActionPointCost = 0;
-		// this.m.HitpointsCost = 0; TODO: Implement hitpoints cost on use
 		this.m.FatigueCost = 0;
+		// this skill costs hitpoints to use, which is handled in onUse(). Might consider adding fatigue cost as well.
 		this.m.MinRange = 0;
 		this.m.MaxRange = 0;
 		this.m.IsHidden = false;
@@ -60,9 +60,9 @@ this.dark_knight_vengeance_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse(_user, _targetTile)
 	{
-		// BBBUILDER_DEBUG_START
+		
 		::logDebug("[Dark Knight Mod] Vengeance skill used by " + _user.getName() + ".");
-		// BBBUILDER_DEBUG_STOP
+		
 		local myTile = _user.getTile();
 
 		// Subtract hitpoints cost (TODO)

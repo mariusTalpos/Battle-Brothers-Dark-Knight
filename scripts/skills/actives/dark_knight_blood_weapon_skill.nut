@@ -1,5 +1,7 @@
 this.dark_knight_blood_weapon_skill <- this.inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		HitpointCost = 10, // Cost in hitpoints to use the skill
+	},
 	function create()
 	{
 		this.m.ID = "actives.dark_knight_blood_weapon";
@@ -14,9 +16,9 @@ this.dark_knight_blood_weapon_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = false;
-		this.m.IsStacking = false;
+		// this.m.IsStacking = false;
 		this.m.IsAttack = false;
-		this.m.IsIgnoredAsAOO = true;
+		// this.m.IsIgnoredAsAOO = true;
 		this.m.IsVisibleTileNeeded = false;
 		this.m.IsWeaponSkill = true;
 		this.m.ActionPointCost = 0;
@@ -45,12 +47,12 @@ this.dark_knight_blood_weapon_skill <- this.inherit("scripts/skills/skill", {
 				type = "text",
 				text = this.getCostString()
 			},
-			// {
-			// 	id = 7,
-			// 	type = "text",
-			// 	icon = "ui/icons/special.png",
-			// 	text = "Your next melee attack deals bonus damage equal to 25% of your current hitpoints, but you lose 10% of your current hitpoints."
-			// }
+			{
+				id = 7,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Your next melee attack deals bonus damage equal to 25% of your missing total hitpoints, but you lose 10 of your current hitpoints."
+			}
 		];
 
 		return ret;
@@ -58,23 +60,32 @@ this.dark_knight_blood_weapon_skill <- this.inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		// Hide if no melee weapon is equipped or if blood weapon is already active
+		// Hide if blood weapon is already active TODO
 		// local canUse = ::Legends.Effects.get(this, ::Legends.Effect.LegendKnockbackPrepared);
 		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
 		local hasMelee = item == null || item.isItemType(this.Const.Items.ItemType.MeleeWeapon);
-		return !((!this.Tactical.isActive()) && hasMelee);
+		return !((this.Tactical.isActive()) && hasMelee);
 	}
+
+	function isUsable() {
+		// ::logInfo("[Dark Knight Mod] Blood Weapon skill usable check: Current HP = " + this.getContainer().getActor().getCurrentProperties().Hitpoints + ", Cost = " + this.m.HitpointCost);
+        return this.getContainer().getActor().getHitpoints() > this.m.HitpointCost;
+    }
 
 	function onUse(_user, _targetTile)
 	{
-		// BBBUILDER_DEBUG_START
-		::logDebug("[Dark Knight Mod] Blood Weapon skill used by " + _user.getName() + ".");
-		// BBBUILDER_DEBUG_STOP
-		local myTile = _user.getTile();
+		local actor = this.getContainer().getActor();
 
-		// Subtract hitpoints cost (TODO)
+		::logDebug("[Dark Knight Mod] Blood Weapon skill used by " + _user.getName() + ".");
+
+		::logDebug("[Dark Knight Mod] _user HP before: " + _user.getHitpoints() + ", HP Max: " + _user.getHitpointsMax());
+
+		_user.setHitpoints(this.Math.min(actor.getHitpointsMax(), actor.getHitpoints() - this.m.HitpointCost));
+
+		::logDebug("[Dark Knight Mod] _user HP after: " + _user.getHitpoints() + ", HP Max: " + _user.getHitpointsMax());
+
 		// Add Blood Weapon effect
-		this.getContainer().add(this.new("scripts/skills/effects/dark_knight_blood_weapon"));
+		this.getContainer().add(this.new("scripts/skills/effects/dark_knight_blood_weapon_effect"));
 		return true;
 	}
 
