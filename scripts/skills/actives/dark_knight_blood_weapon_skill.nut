@@ -51,7 +51,7 @@ this.dark_knight_blood_weapon_skill <- this.inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Your next melee attack deals bonus damage equal to 25% of your missing total hitpoints, but you lose 10 of your current hitpoints."
+				text = "Your next melee attack deals bonus damage equal to 0.2% of your missing total hitpoints, costs 10 of your current hitpoints."
 			}
 		];
 
