@@ -51,7 +51,7 @@ this.dark_knight_blood_weapon_skill <- this.inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Your next melee attack deals bonus damage equal to 0.2% of your missing total hitpoints, costs 10 of your current hitpoints."
+				text = "Your next melee attack deals bonus damage equal to 0.2% of your missing total hitpoints, costs 10 of your current hitpoints. Does not work with unarmed"
 			}
 		];
 
@@ -63,7 +63,7 @@ this.dark_knight_blood_weapon_skill <- this.inherit("scripts/skills/skill", {
 		// Hide if blood weapon is already active TODO
 		// local canUse = ::Legends.Effects.get(this, ::Legends.Effect.LegendKnockbackPrepared);
 		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		local hasMelee = item == null || item.isItemType(this.Const.Items.ItemType.MeleeWeapon);
+		local hasMelee = item.isItemType(this.Const.Items.ItemType.MeleeWeapon);
 		return !((this.Tactical.isActive()) && hasMelee);
 	}
 
