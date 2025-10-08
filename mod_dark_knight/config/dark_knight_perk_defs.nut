@@ -19,7 +19,7 @@
 		Name = this.Const.Strings.PerkName.DarkKnightBloodWeapon,
 		Tooltip = this.Const.Strings.PerkDescription.DarkKnightBloodWeapon,
 		Icon = "ui/perks/perk_dark_knight_blood_weapon.png",
-		IconDisabled = "ui/perks/perk_dark_knight_blood_weapon_sw.png",
+		IconDisabled = "ui/perks/perk_dark_knight_blood_weapon_bw.png",
 		Const = "DarkKnightBloodWeapon"
 	},
 	{
@@ -28,7 +28,7 @@
 		Name = this.Const.Strings.PerkName.DarkKnightAbyssalDrain,
 		Tooltip = this.Const.Strings.PerkDescription.DarkKnightAbyssalDrain,
 		Icon = "ui/perks/perk_dark_knight_abyssal_drain.png",
-		IconDisabled = "ui/perks/perk_dark_knight_abyssal_drain_sw.png",
+		IconDisabled = "ui/perks/perk_dark_knight_abyssal_drain_bw.png",
 		Const = "DarkKnightAbyssalDrain"
 	},
 	{
@@ -37,7 +37,7 @@
 		Name = this.Const.Strings.PerkName.DarkKnightVengeance,
 		Tooltip = this.Const.Strings.PerkDescription.DarkKnightVengeance,
 		Icon = "ui/perks/perk_dark_knight_vengeance.png",
-		IconDisabled = "ui/perks/perk_dark_knight_vengeance_sw.png",
+		IconDisabled = "ui/perks/perk_dark_knight_vengeance_bw.png",
 		Const = "DarkKnightVengeance"
 	},
 	{
@@ -46,7 +46,7 @@
 		Name = this.Const.Strings.PerkName.DarkKnightLivingDead,
 		Tooltip = this.Const.Strings.PerkDescription.DarkKnightLivingDead,
 		Icon = "ui/perks/perk_dark_knight_living_dead.png",
-		IconDisabled = "ui/perks/perk_dark_knight_living_dead_sw.png",
+		IconDisabled = "ui/perks/perk_dark_knight_living_dead_bw.png",
 		Const = "DarkKnightLivingDead"
 	}
 ]);
