@@ -4,7 +4,7 @@ this.perk_dark_knight_blood_weapon <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "perk.dark_knight_blood_weapon";
 		this.m.Name = "Blood Weapon";
-		this.m.Description = "Infuse your weapon with the spite of your own injuries!.\n\n[color=#4f1800][u]Passive:[/u][/color]\n• Grants [color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] hitpoints.\n\n[color=#4f1800][u]Active:[/u][/color]\n• Unlocks the \'Blood Weapon\' active skill which makes your next melee attack deal bonus damage at the cost of your own hitpoints. \n• The bonus damage scales with your hitpoints.";
+		this.m.Description = "Infuse your weapon with the spite of your own injuries!\n\n[color=#4f1800][u]Passive:[/u][/color]\n• Grants [color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] hitpoints.\n\n[color=#4f1800][u]Active:[/u][/color]\n• Unlocks the \'Blood Weapon\' active skill. Your next melee attack deals bonus damage equal to 0.2% of your missing total hitpoints, costs 10 of your current hitpoints. Does not work with unarmed.";
 		this.m.Icon = "ui/perks/perk_dark_knight_blood_weapon.png";
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
