@@ -7,3 +7,10 @@ foreach (file in ::IO.enumerateFiles("mod_dark_knight/config"))
 
 
 ::logInfo("[Dark Knight Mod] Registered successfully.");
+
+
+// Ideas for future perks/skills:
+// - A passive skill that increases damage dealt to enemies below 50% health
+// - A passive that causes corpses to explode when consumed by Abyssal Drain, dealing AoE damage like the flesh golem explosion
+	// - This passive can be gained by equipping the Flesh Golem 2H Flail
+// - Maybe more passives from killing evil bosses

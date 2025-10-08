@@ -235,8 +235,7 @@ this.legend_dark_knight_background <- this.inherit("scripts/skills/backgrounds/c
 		local actor = this.getContainer().getActor();
 		actor.setTitle("The Dark Knight");
 		::Legends.Traits.grant(this, ::Legends.Trait.Loyal);
-		// TODO: give LionHeart trait
-		::Legends.Traits.grant(this, ::Legends.Trait.LegendLionheart);
+		// ::Legends.Traits.grant(this, ::Legends.Trait.LegendLionheart);
 
 	}
 

@@ -1,6 +1,6 @@
 this.dark_knight_abyssal_drain_skill <- this.inherit("scripts/skills/skill", {
 	m = {
-		ThreatOnHit: 0
+		ThreatOnHit = 0
 	},
 	function create() {
 		this.m.ID = "actives.dark_knight_abyssal_drain";
@@ -48,11 +48,23 @@ this.dark_knight_abyssal_drain_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	// TODO: Consume a corpse on the battlefield to heal based on resolve
+	function onVerifyTarget(_originTile, _targetTile) {
+
+		if (!_targetTile.IsCorpseSpawned) {
+			return false;
+		}
+
+		if (!_targetTile.Properties.get("Corpse").IsConsumable) {
+			return false;
+		}
+
+		return true;
+	}
 
 	function onUse(_user, _targetTile)
 	{
-		_targetTile = _user.getTile();
+		// _targetTile = _user.getTile();
+		local userTile = _user.getTile();
 
 		::logDebug("[Dark Knight Mod] Abyssal Drain skill used by " + _user.getName() + ".");
 
@@ -60,18 +72,13 @@ this.dark_knight_abyssal_drain_skill <- this.inherit("scripts/skills/skill", {
 			if (this.Const.Tactical.GruesomeFeastParticles.len() != 0) { // if we have particle effects defined
 				for (local i = 0; i < this.Const.Tactical.GruesomeFeastParticles.len(); i = ++i) { // spawn all defined particle effects
 					this.Tactical.spawnParticleEffect(false, this.Const.Tactical.GruesomeFeastParticles[i].Brushes, _targetTile, this.Const.Tactical.GruesomeFeastParticles[i].Delay, this.Const.Tactical.GruesomeFeastParticles[i].Quantity, this.Const.Tactical.GruesomeFeastParticles[i].LifeTimeQuantity, this.Const.Tactical.GruesomeFeastParticles[i].SpawnRate, this.Const.Tactical.GruesomeFeastParticles[i].Stages);
+					this.Tactical.spawnParticleEffect(false, this.Const.Tactical.GruesomeFeastParticles[i].Brushes, userTile, this.Const.Tactical.GruesomeFeastParticles[i].Delay, this.Const.Tactical.GruesomeFeastParticles[i].Quantity, this.Const.Tactical.GruesomeFeastParticles[i].LifeTimeQuantity, this.Const.Tactical.GruesomeFeastParticles[i].SpawnRate, this.Const.Tactical.GruesomeFeastParticles[i].Stages);
 				}
 			}
 
 			if (_user.isDiscovered() && (!_user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer)) { // only log if the user is discovered and not hidden to player
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " feasts on a corpse");
+				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " drains a corpse");
 			}
-		}
-
-		if (!_user.isHiddenToPlayer()) { // remove corpse
-			this.Time.scheduleEvent(this.TimeUnit.Virtual, 500, this.onRemoveCorpse, _targetTile);
-		} else {
-			this.onRemoveCorpse(_targetTile);
 		}
 
 		// define resolve, heal amount and threat
@@ -91,35 +98,24 @@ this.dark_knight_abyssal_drain_skill <- this.inherit("scripts/skills/skill", {
 
 		// trigger a morale check for all actors on the map within 4 tiles
 		local actors = this.Tactical.Entities.getAllInstances(); // get all actors on the map
-		foreach(actor in actors) {
-			if (actor.getMoraleState() == this.Const.MoraleState.Ignore || !actor.getCurrentProperties().IsAffectedByLosingHitpoints) { // ignore morale immune actors like undead
-				continue;
+		foreach(i in actors) {
+			foreach (actor in i) {
+				if (actor.getMoraleState() == this.Const.MoraleState.Ignore || !actor.getCurrentProperties().IsAffectedByLosingHitpoints) { // ignore morale immune actors like undead
+					continue;
+				}
+				if (_targetTile.getDistanceTo(actor.getTile()) > 2 && _user.getTile().getDistanceTo(actor.getTile()) > 2) // only affect actors within 2 tiles of the corpse or user
+				{
+					continue;
+				}
+				// consider add a check to ignore self?
+
+				this.spawnIcon("perk_27", actor.getTile());
+				actor.checkMorale(-1, this.Const.Morale.OnHitBaseDifficulty * (1.0 - actor.getHitpoints() / actor.getHitpointsMax()) - threatOnHit);
+				::logDebug("[Dark Knight Mod] Abyssal Drain: Morale check delivered to actor " + actor.getName());
 			}
-			if (_user.getTile().getDistanceTo(actor.getTile()) > 2)
-			{
-				continue;
-			}
-			this.spawnIcon("perk_27", actor.getTile());
-			actor.checkMorale(-1, this.Const.Morale.OnHitBaseDifficulty * (1.0 - actor.getHitpoints() / actor.getHitpointsMax()) - threatOnHit);
 		}
+		this.onRemoveCorpse(_targetTile);
 
-
-	}
-
-	function onVerifyTarget(_originTile, _targetTile) {
-		if (_targetTile.IsEmpty) {
-			return false;
-		}
-
-		if (!_targetTile.IsCorpseSpawned) {
-			return false;
-		}
-
-		if (!_targetTile.Properties.get("Corpse").IsConsumable) {
-			return false;
-		}
-
-		return true;
 	}
 
 	function onRemoveCorpse(_tag) {
