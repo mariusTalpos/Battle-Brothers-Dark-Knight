@@ -58,12 +58,6 @@ this.dark_knight_blood_weapon_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function isHidden()
-	{
-		
-		return !((this.Tactical.isActive()) && hasMelee);
-	}
-
 	function isUsable() {
 		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
 		local hasMelee = item.isItemType(this.Const.Items.ItemType.MeleeWeapon);
