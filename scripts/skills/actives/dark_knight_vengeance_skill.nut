@@ -1,5 +1,7 @@
 this.dark_knight_vengeance_skill <- this.inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		HitpointCost = 10, // Cost in hitpoints to use the skill
+	},
 	function create()
 	{
 		this.m.ID = "actives.dark_knight_vengeance";
@@ -16,11 +18,11 @@ this.dark_knight_vengeance_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsTargeted = false;
 		this.m.IsStacking = false;
 		this.m.IsAttack = false;
-this.m.IsIgnoredAsAOO = true;
+		this.m.IsIgnoredAsAOO = true;
 		this.m.IsVisibleTileNeeded = false;
-this.m.IsWeaponSkill = true;
-		this.m.ActionPointCost = 0;
-		this.m.FatigueCost = 0;
+		this.m.IsWeaponSkill = true;
+		this.m.ActionPointCost = 4;
+		this.m.FatigueCost = 20;
 		// this skill costs hitpoints to use, which is handled in onUse(). Might consider adding fatigue cost as well.
 		this.m.MinRange = 0;
 		this.m.MaxRange = 0;
@@ -49,14 +51,11 @@ this.m.IsWeaponSkill = true;
 		return ret;
 	}
 
-	function isHidden()
-	{
-		// Hide if no melee weapon is equipped or if vengeance is already active (TODO)
-		// local canUse = ::Legends.Effects.get(this, ::Legends.Effect.LegendKnockbackPrepared);
+	function isUsable() {
 		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		local hasMelee = item == null || item.isItemType(this.Const.Items.ItemType.MeleeWeapon);
-		return !((!this.Tactical.isActive()) && hasMelee);
-	}
+		local hasMelee = item.isItemType(this.Const.Items.ItemType.MeleeWeapon);
+        return this.getContainer().getActor().getHitpoints() > this.m.HitpointCost && hasMelee && this.skill.isUsable() && !this.getContainer().hasSkill("effects.dark_knight_blood_weapon");
+    }
 
 	function onUse(_user, _targetTile)
 	{
