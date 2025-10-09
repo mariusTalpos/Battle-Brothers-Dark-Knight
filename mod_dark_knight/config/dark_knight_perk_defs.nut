@@ -14,7 +14,7 @@
 ::Const.Perks.addPerkDefObjects([
 	// Dark Knight
 	{
-		ID = "perk.DarkKnightBloodWeapon",
+		ID = "perk.dark_knight_blood_weapon",
 		Script = "scripts/skills/perks/perk_dark_knight_blood_weapon",
 		Name = this.Const.Strings.PerkName.DarkKnightBloodWeapon,
 		Tooltip = this.Const.Strings.PerkDescription.DarkKnightBloodWeapon,
@@ -23,7 +23,7 @@
 		Const = "DarkKnightBloodWeapon"
 	},
 	{
-		ID = "perk.DarkKnightAbyssalDrain",
+		ID = "perk.dark_knight_abyssal_drain",
 		Script = "scripts/skills/perks/perk_dark_knight_abyssal_drain",
 		Name = this.Const.Strings.PerkName.DarkKnightAbyssalDrain,
 		Tooltip = this.Const.Strings.PerkDescription.DarkKnightAbyssalDrain,
@@ -32,7 +32,7 @@
 		Const = "DarkKnightAbyssalDrain"
 	},
 	{
-		ID = "perk.DarkKnightVengeance",
+		ID = "perk.dark_knight_vengeance",
 		Script = "scripts/skills/perks/perk_dark_knight_vengeance",
 		Name = this.Const.Strings.PerkName.DarkKnightVengeance,
 		Tooltip = this.Const.Strings.PerkDescription.DarkKnightVengeance,
@@ -41,7 +41,7 @@
 		Const = "DarkKnightVengeance"
 	},
 	{
-		ID = "perk.DarkKnightLivingDead",
+		ID = "perk.dark_knight_living_dead",
 		Script = "scripts/skills/perks/perk_dark_knight_living_dead",
 		Name = this.Const.Strings.PerkName.DarkKnightLivingDead,
 		Tooltip = this.Const.Strings.PerkDescription.DarkKnightLivingDead,

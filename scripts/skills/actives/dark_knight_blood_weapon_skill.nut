@@ -60,16 +60,14 @@ this.dark_knight_blood_weapon_skill <- this.inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		// Hide if blood weapon is already active TODO
-		// local canUse = ::Legends.Effects.get(this, ::Legends.Effect.LegendKnockbackPrepared);
-		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		local hasMelee = item.isItemType(this.Const.Items.ItemType.MeleeWeapon);
+		
 		return !((this.Tactical.isActive()) && hasMelee);
 	}
 
 	function isUsable() {
-		// ::logInfo("[Dark Knight Mod] Blood Weapon skill usable check: Current HP = " + this.getContainer().getActor().getCurrentProperties().Hitpoints + ", Cost = " + this.m.HitpointCost);
-        return this.getContainer().getActor().getHitpoints() > this.m.HitpointCost;
+		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local hasMelee = item.isItemType(this.Const.Items.ItemType.MeleeWeapon);
+        return this.getContainer().getActor().getHitpoints() > this.m.HitpointCost && hasMelee && this.skill.isUsable() && !this.getContainer().hasSkill("effects.dark_knight_blood_weapon");
     }
 
 	function onUse(_user, _targetTile)
