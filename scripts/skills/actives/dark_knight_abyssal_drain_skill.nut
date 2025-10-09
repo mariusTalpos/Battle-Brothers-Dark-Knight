@@ -100,14 +100,16 @@ this.dark_knight_abyssal_drain_skill <- this.inherit("scripts/skills/skill", {
 		local actors = this.Tactical.Entities.getAllInstances(); // get all actors on the map
 		foreach(i in actors) {
 			foreach (actor in i) {
-				if (actor.getMoraleState() == this.Const.MoraleState.Ignore || !actor.getCurrentProperties().IsAffectedByLosingHitpoints) { // ignore morale immune actors like undead
+				if (actor.getMoraleState() == this.Const.MoraleState.Ignore) { // ignore morale immune actors like undead
 					continue;
 				}
 				if (_targetTile.getDistanceTo(actor.getTile()) > 2 && _user.getTile().getDistanceTo(actor.getTile()) > 2) // only affect actors within 2 tiles of the corpse or user
 				{
 					continue;
 				}
-				// consider add a check to ignore self?
+				if (userTile.getDistanceTo(actor.getTile()) == 0){ // if actor tile is the same as user tile then skip morale check
+					continue; // there's a better way to check for self but fuck it
+				}
 
 				this.spawnIcon("perk_27", actor.getTile());
 				actor.checkMorale(-1, this.Const.Morale.OnHitBaseDifficulty * (1.0 - actor.getHitpoints() / actor.getHitpointsMax()) - threatOnHit);
