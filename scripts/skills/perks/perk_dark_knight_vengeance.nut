@@ -16,9 +16,6 @@ this.perk_dark_knight_vengeance <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-
-		::logInfo("[Dark Knight Mod] Vengeance perk taken.");
-
 		if (!this.m.Container.hasSkill("actives.dark_knight_vengeance"))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/dark_knight_vengeance_skill"));

@@ -63,9 +63,7 @@ this.dark_knight_blood_weapon_effect <- this.inherit("scripts/skills/skill", {
 
 			// Damage bonus based on missing hitpoints
 			local missingHP = hitpointMax - currentHitpoints;
-			::logDebug("[Dark Knight Mod] Blood Weapon effect: missingHP=" + missingHP + ", HP Max=" + hitpointMax + ", HP Current=" + currentHitpoints);
 			local bonusMult = 1.0 + (missingHP * 0.002); // Example: +0.2% damage per missing HP
-			::logDebug("[Dark Knight Mod] Blood Weapon effect: bonusMult=" + bonusMult);
 			_properties.DamageTotalMult *= bonusMult; //this works
 		}
 	}

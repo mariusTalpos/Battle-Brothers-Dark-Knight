@@ -68,15 +68,8 @@ this.dark_knight_blood_weapon_skill <- this.inherit("scripts/skills/skill", {
 	{
 		local actor = this.getContainer().getActor();
 
-		::logDebug("[Dark Knight Mod] Blood Weapon skill used by " + _user.getName() + ".");
-
-		::logDebug("[Dark Knight Mod] _user HP before: " + _user.getHitpoints() + ", HP Max: " + _user.getHitpointsMax());
-
 		_user.setHitpoints(this.Math.min(actor.getHitpointsMax(), actor.getHitpoints() - this.m.HitpointCost));
 
-		::logDebug("[Dark Knight Mod] _user HP after: " + _user.getHitpoints() + ", HP Max: " + _user.getHitpointsMax());
-
-		// Add Blood Weapon effect
 		this.getContainer().add(this.new("scripts/skills/effects/dark_knight_blood_weapon_effect"));
 		return true;
 	}
