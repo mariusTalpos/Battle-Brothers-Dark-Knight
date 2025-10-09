@@ -54,19 +54,16 @@ this.dark_knight_vengeance_skill <- this.inherit("scripts/skills/skill", {
 	function isUsable() {
 		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
 		local hasMelee = item.isItemType(this.Const.Items.ItemType.MeleeWeapon);
-        return this.getContainer().getActor().getHitpoints() > this.m.HitpointCost && hasMelee && this.skill.isUsable() && !this.getContainer().hasSkill("effects.dark_knight_blood_weapon");
+        return this.getContainer().getActor().getHitpoints() > this.m.HitpointCost && hasMelee && this.skill.isUsable() && !this.getContainer().hasSkill("effects.dark_knight_vengeance");
     }
 
 	function onUse(_user, _targetTile)
 	{
-		
-		::logDebug("[Dark Knight Mod] Vengeance skill used by " + _user.getName() + ".");
-		
-		local myTile = _user.getTile();
+		local actor = this.getContainer().getActor();
 
-		// Subtract hitpoints cost (TODO)
-		// Add Vengeance effect
-		this.getContainer().add(this.new("scripts/skills/effects/dark_knight_vengeance"));
+		_user.setHitpoints(this.Math.min(actor.getHitpointsMax(), actor.getHitpoints() - this.m.HitpointCost));
+
+		this.getContainer().add(this.new("scripts/skills/effects/dark_knight_vengeance_effect"));
 		return true;
 	}
 

@@ -1,5 +1,8 @@
 this.dark_knight_vengeance_effect <- this.inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		isPerformingPayback = false,
+		TurnsLeft = 1
+	},
 	function create()
 	{
 		this.m.ID = "effects.dark_knight_vengeance";
@@ -69,6 +72,17 @@ this.dark_knight_vengeance_effect <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
+	function onPerformPayback(_attackinfo)
+	{
+		_attackinfo.Container.setBusy(false);
+		this.m.isPerformingPayback = true;
+		if (_attackinfo.User.isAlive() && _attackinfo.TargetTile.getEntity().isAlive())
+		{
+			return _attackinfo.Skill.attackEntity(_attackinfo.User, _attackinfo.TargetTile.getEntity());
+		}
+		this.m.isPerformingPayback = false;
+	}
+
 	function onAnySkillUsed(_skill, _targetEntity, _properties)
 	{
 		local actor = this.getContainer().getActor();
@@ -80,20 +94,18 @@ this.dark_knight_vengeance_effect <- this.inherit("scripts/skills/skill", {
 		{
 			// Damage bonus based on missing hitpoints
 			local missingHP = actor.getHitpointsMax() - actor.getHitpoints();
-			local bonusMult = 1.0 + (missingHP * 0.01); // Example: +1% damage per missing HP
+			local bonusMult = 1.0 + (missingHP * 0.001); // +0.1% damage per missing HP
 			_properties.DamageTotalMult *= bonusMult;
 		}
 	}
 
-	function onPerformPayback(_attackinfo)
+	function onTurnStart()
 	{
-		_attackinfo.Container.setBusy(false);
-		this.m.isPerformingPayback = true;
-		if (_attackinfo.User.isAlive() && _attackinfo.TargetTile.getEntity().isAlive())
+		if (--this.m.TurnsLeft <= 0)
 		{
-			return _attackinfo.Skill.attackEntity(_attackinfo.User, _attackinfo.TargetTile.getEntity());
+			this.removeSelf();
 		}
-		this.m.isPerformingPayback = false;
 	}
+
 
 });
