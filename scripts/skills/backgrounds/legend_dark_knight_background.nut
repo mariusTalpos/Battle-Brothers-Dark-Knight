@@ -42,7 +42,7 @@ this.legend_dark_knight_background <- this.inherit("scripts/skills/backgrounds/c
 			::Legends.Traits.getID(::Legends.Trait.EagleEyes),
 			::Legends.Traits.getID(::Legends.Trait.NightOwl),
 			::Legends.Traits.getID(::Legends.Trait.Lucky),
-			// ::Legends.Traits.getID(::Legends.Trait.LegendSureShot)
+			::Legends.Traits.getID(::Legends.Trait.LegendSureshot)
 		];
 		this.m.ExcludedTalents = [
 			this.Const.Attributes.RangedSkill,
