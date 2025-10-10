@@ -1,6 +1,6 @@
 this.perk_dark_knight_living_dead <- this.inherit("scripts/skills/skill", {
 	m = {
-		IsSpent: false,
+		IsSpent = false,
 	},
 
 	function isSpent()
