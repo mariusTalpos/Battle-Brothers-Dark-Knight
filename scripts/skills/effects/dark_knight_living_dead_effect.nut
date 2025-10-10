@@ -1,26 +1,17 @@
 this.dark_knight_living_dead_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.m.ID = "effects.dark_knight_living_dead";
 		this.m.Name = "Living Dead";
 		this.m.Icon = "ui/perks/perk_dark_knight_living_dead.png";
 		this.m.IconMini = "dark_knight_living_dead";
 		this.m.Type = this.Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
-		this.m.IsStacking = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getDescription()
-	{
-		return "This character can cheat death, surviving a lethal blow with 1 hitpoint instead.";
-	}
-
-	function getTooltip()
-	{
-		return [
-			{
+	function getTooltip() {
+		return [{
 				id = 1,
 				type = "title",
 				text = this.getName()
@@ -33,22 +24,22 @@ this.dark_knight_living_dead_effect <- this.inherit("scripts/skills/skill", {
 		];
 	}
 
-	function onAdded() {
-		if (this.getContainer().getActor().isPlacedOnMap())
-			this.spawnIcon("status_effect_54", this.getContainer().getActor().getTile());
-		this.onRefresh();
+	function onUpdate(_properties) {
+		local actor = this.getContainer().getActor();
+		actor.setIsAbleToDie(false);
+		local currentHitpoints = actor.getHitpoints(); // this returns current hitpoints, not max
+		local hitpointMax = actor.getHitpointsMax(); // this returns actors max HP but without mods like colossus
+
+		// Damage bonus based on missing hitpoints
+		local missingHP = hitpointMax - currentHitpoints;
+		local bonusMult = 1.0 + (missingHP * 0.002); // Example: +0.2% damage per missing HP
+		_properties.DamageTotalMult *= bonusMult; //this works
 	}
 
-	function onRefresh() {
-		// ...existing code...
-	}
-
-	function onTargetHit(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
-		// ...existing code...
-	}
-
-	function onTargetMissed(_skill, _targetEntity) {
-		// ...existing code...
+	function onTurnStart() {
+		local actor = this.getContainer().getActor();
+		actor.setIsAbleToDie(true);
+		this.removeSelf();
 	}
 
 });

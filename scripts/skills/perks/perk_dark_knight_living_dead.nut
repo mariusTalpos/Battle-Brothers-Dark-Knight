@@ -1,5 +1,13 @@
 this.perk_dark_knight_living_dead <- this.inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		IsSpent: false,
+	},
+
+	function isSpent()
+	{
+		return this.m.IsSpent;
+	}
+
 	function create()
 	{
 		this.m.ID = "perk.dark_knight_living_dead";
@@ -11,24 +19,32 @@ this.perk_dark_knight_living_dead <- this.inherit("scripts/skills/skill", {
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
-		this.m.SoundOnUse = [];
+	}
+
+	function setSpent( _f )
+	{
+		if (_f && !this.m.IsSpent)
+		{
+			this.getContainer().add(this.new("scripts/skills/effects/dark_knight_living_dead_effect"));
+		}
+
+		this.m.IsSpent = _f;
+	}
+
+	function onCombatStarted()
+	{
+		this.m.IsSpent = false;
+	}
+
+	function onCombatFinished()
+	{
+		this.m.IsSpent = false;
+		this.skill.onCombatFinished();
 	}
 
 	function onAdded()
 	{
-
 		::logInfo("[Dark Knight Mod] Living Dead perk taken.");
-
-		// TODO: Create Living dead cheat death passive skill similar to 9 lives
-		// if (!this.m.Container.hasSkill("actives.dark_knight_living_dead"))
-		// {
-		// 	// this.m.Container.add(this.new("scripts/skills/actives/dark_knight_living_dead"));
-		// }
-	}
-
-	function onRemoved()
-	{
-		this.m.Container.removeByID("actives.dark_knight_living_dead");
 	}
 
 	function onUpdate(_properties)
