@@ -62,6 +62,10 @@
 			}
 		}
 
+		// 3 options:
+		// 1. set damage to 0 here if living dead procs, then call original function
+		// 2. create a living dead logic branch that does not call the original function at all
+
 		::logInfo("[Dark Knight Mod] Calculated Damage: " + damage);
 
 		// Because we are hooking into the damage calculation, if we actually update HP here, it will be double-deducted when the original function runs
@@ -70,14 +74,19 @@
 		::logInfo("[Dark Knight Mod] Actor HP after damage: " + hitpointsBefore);
 
         if (hitpointsBefore <= 0){
-            ::logDebug("[Dark Knight Mod] Actor HP <= 0, checking Living Dead logic...");
+            ::logInfo("[Dark Knight Mod] Actor HP <= 0, checking Living Dead logic...");
             if (livingDeadSkill != null && !livingDeadSkill.isSpent()) {
-                ::logDebug("[Dark Knight Mod] LivingDeadSkill is not spent, setting spent to true.");
+                ::logInfo("[Dark Knight Mod] LivingDeadSkill is not spent, setting spent to true.");
                 livingDeadSkill.setSpent(true);
+				_hitInfo.BodyDamageMult = 0; // headshots will still kill
+				this.m.Hitpoints = 1; // Ensure HP is set to 1 so the damage still applies but does not kill
                 this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(this) + " is too stubborn to die!");
             }
 			// This logic does not trigger on subsequent death checks because the IsAbleToDie property makes it impossible to get hit & sets HP to 1
             if (livingDeadSkill != null && livingDeadSkill.isSpent() && livingDeadEffect != null && livingDeadEffect.isActive) {
+				::logInfo("[Dark Knight Mod] LivingDeadSkill is spent and effect is active, preventing death.");
+				_hitInfo.BodyDamageMult = 0; // headshots will still kill
+				this.m.Hitpoints = 1; // Ensure HP is set to 1 so the damage still applies but does not kill
                 local mockingMessages = [
                     this.Const.UI.getColorizedEntityName(this) + " slaps away the Reaper's hand!",
                     this.Const.UI.getColorizedEntityName(this) + " falls — and rises sharper than before.",
