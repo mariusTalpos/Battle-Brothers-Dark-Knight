@@ -7,9 +7,7 @@ foreach (file in ::IO.enumerateFiles("mod_dark_knight/config"))
 
 // load hooks folder
 foreach (file in ::IO.enumerateFiles("mod_dark_knight/hooks"))
-{
 	::include(file);
-}
 
 
 ::logInfo("[Dark Knight Mod] Registered successfully.");
