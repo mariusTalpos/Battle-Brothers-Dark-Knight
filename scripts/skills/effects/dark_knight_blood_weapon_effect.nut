@@ -14,7 +14,7 @@ this.dark_knight_blood_weapon_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getDescription() {
-		return "The blood price has been payed. This character's next melee attack will deal bonus damage scaling with their missing hitpoints";
+		return "The blood price has been payed. This character's next melee attack will deal bonus damage scaling with their missing hitpoints"; //TODO: better tooltips
 	}
 
 	function getTooltip() {

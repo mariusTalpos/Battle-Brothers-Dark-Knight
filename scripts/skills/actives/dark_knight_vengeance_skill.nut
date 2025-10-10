@@ -6,7 +6,7 @@ this.dark_knight_vengeance_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.dark_knight_vengeance";
 		this.m.Name = "Vengeance";
-		this.m.Description = "Your pain fuels your wrath. Retaliate against enemies who hit you at the cost of defence for a single round. Retaliation attacks from this skill deal bonus damage equal to your lost hitpoints.";
+		this.m.Description = "Your pain fuels your wrath. Retaliate against enemies who hit you at the cost of hitpoints for a single round. Retaliation attacks from this skill deal bonus damage equal to your lost hitpoints.";
 		this.m.Icon = "skills/dark_knight_vengeance.png";
 		this.m.IconDisabled = "skills/dark_knight_vengeance_bw.png";
 		this.m.Overlay = "active_vengeance";
