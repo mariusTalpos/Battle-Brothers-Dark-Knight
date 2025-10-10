@@ -6,10 +6,10 @@
 ::Const.Strings.PerkDescription.DarkKnightAbyssalDrain <- "Devour the embers of life from the fallen.\n\n[color=#4f1800][u]Passive:[/u][/color]\n• Grants [color=" + this.Const.UI.Color.PositiveValue + "]+5[/color] hitpoints.\n\n[color=#4f1800][u]Active:[/u][/color]\n• Unlocks the 'Abyssal Drain' active skill. Destroy a corpse on the battlefield to heal yourself for 5 + 0.2 per point of resolve, remove all injuries, and trigger a morale check for nearby enemies.";
 
 ::Const.Strings.PerkName.DarkKnightVengeance <- "Vengeance";
-::Const.Strings.PerkDescription.DarkKnightVengeance <- "Your pain fuels your wrath.\n\n[color=#4f1800][u]Passive:[/u][/color]\n• Grants [color=" + this.Const.UI.Color.PositiveValue + "]+15[/color] hitpoints.\n\n[color=#4f1800][u]Active:[/u][/color]\n• Unlocks the \'Vengeance\' active skill which allows you to retaliate against enemies who hit you at the cost of defence for a single round. Retaliation attacks from this skill deal bonus damage equal to your lost hitpoints.";
+::Const.Strings.PerkDescription.DarkKnightVengeance <- "Your pain fuels your wrath.\n\n[color=#4f1800][u]Passive:[/u][/color]\n• Grants [color=" + this.Const.UI.Color.PositiveValue + "]+15[/color] hitpoints.\n\n[color=#4f1800][u]Active:[/u][/color]\n• Unlocks the \'Vengeance\' active skill which allows you to retaliate against enemies who hit you at the cost of hitpoints for a single round. Retaliation attacks from this skill deal bonus damage equal to your lost hitpoints.";
 
 ::Const.Strings.PerkName.DarkKnightLivingDead <- "Living Dead";
-::Const.Strings.PerkDescription.DarkKnightLivingDead <- "You are no longer afraid of death.\n\n[color=#4f1800][u]Passive:[/u][/color]\n• Grants [color=" + this.Const.UI.Color.PositiveValue + "]+20[/color] hitpoints.\n\n[color=#4f1800][u]Active:[/u][/color]\n• Unlocks the \'Living Dead\' active skill which allows you to cheat death, surviving a lethal blow with 1 hitpoint instead.";
+::Const.Strings.PerkDescription.DarkKnightLivingDead <- "You are no longer afraid of death.\n\n[color=#4f1800][u]Passive:[/u][/color]\n• Grants [color=" + this.Const.UI.Color.PositiveValue + "]+20[/color] hitpoints.\n\n[color=#4f1800][u]Active:[/u][/color]\n• Once per battle, upon receiving a killing blow, instead survive with 1 hitpoint and gain death protection until the start of your next turn. Headshots completely ignore this perk.";
 
 ::Const.Perks.addPerkDefObjects([
 	// Dark Knight

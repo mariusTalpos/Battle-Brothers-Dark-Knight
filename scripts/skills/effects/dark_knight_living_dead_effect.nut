@@ -10,6 +10,11 @@ this.dark_knight_living_dead_effect <- this.inherit("scripts/skills/skill", {
 		this.m.IsRemovedAfterBattle = true;
 	}
 
+	function getDescription()
+	{
+		return "This character cannot be killed unless hit in the head.";
+	}
+
 	function getTooltip() {
 		return [{
 				id = 1,
@@ -26,7 +31,7 @@ this.dark_knight_living_dead_effect <- this.inherit("scripts/skills/skill", {
 
 	function onUpdate(_properties) {
 		local actor = this.getContainer().getActor();
-		actor.setIsAbleToDie(false);
+		// actor.setIsAbleToDie(false); // this breaks vengeance compatibility
 		local currentHitpoints = actor.getHitpoints(); // this returns current hitpoints, not max
 		local hitpointMax = actor.getHitpointsMax(); // this returns actors max HP but without mods like colossus
 
@@ -38,8 +43,9 @@ this.dark_knight_living_dead_effect <- this.inherit("scripts/skills/skill", {
 
 	function onTurnStart() {
 		local actor = this.getContainer().getActor();
-		actor.setIsAbleToDie(true);
-		this.removeSelf();
+		actor.setFatigue(15)
+		// actor.setIsAbleToDie(true);
+		// this.removeSelf();
 	}
 
 });
