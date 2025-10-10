@@ -64,11 +64,12 @@
 
 		::logInfo("[Dark Knight Mod] Calculated Damage: " + damage);
 
-		this.m.Hitpoints = this.Math.round(this.m.Hitpoints - damage);
+		// Because we are hooking into the damage calculation, if we actually update HP here, it will be double-deducted when the original function runs
+		local hitpointsBefore = this.Math.round(this.m.Hitpoints - damage);
 
-		::logInfo("[Dark Knight Mod] Actor HP after damage: " + this.m.Hitpoints);
+		::logInfo("[Dark Knight Mod] Actor HP after damage: " + hitpointsBefore);
 
-        if (this.m.Hitpoints <= 0){
+        if (hitpointsBefore <= 0){
             ::logDebug("[Dark Knight Mod] Actor HP <= 0, checking Living Dead logic...");
             if (livingDeadSkill != null && !livingDeadSkill.isSpent()) {
                 ::logDebug("[Dark Knight Mod] LivingDeadSkill is not spent, setting spent to true.");
