@@ -142,17 +142,14 @@ this.legends_dark_knight_scenario <- this.inherit("scripts/scenarios/world/start
 		local garbage = [];
 		local bros = _roster.getAll();
 
-		this.addBroToRoster(_roster, "flagellant_background", 4);
-		this.addBroToRoster(_roster, "monk_background", 4);
-		this.addBroToRoster(_roster, "monk_background", 4);
-		this.addBroToRoster(_roster, "witchhunter_background", 5);
-		this.addBroToRoster(_roster, "legend_pilgrim_background", 4);
-		this.addBroToRoster(_roster, "crusader_background", 8);
+		this.addBroToRoster(_roster, "apostate_background", 4);
+		this.addBroToRoster(_roster, "wretch_background", 4);
+		this.addBroToRoster(_roster, "dark_knight_background", 8);
 
 		foreach( i, bro in bros )
 		{
 
-			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw))
+			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Crusader)) // the holy ones will not join you
 			{
 				garbage.push(bro);
 			}
@@ -166,24 +163,7 @@ this.legends_dark_knight_scenario <- this.inherit("scripts/scenarios/world/start
 
 	function onGenerateBro(bro)
 	{
-		if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Crusader))
-		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75); //1.0 = default
-			bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
-			bro.getSkills().update();
-		}
-		else if (bro.getBackground().getID() == "background.squire")
-		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.85); //1.0 = default
-			bro.getBaseProperties().DailyWageMult *= 0.85; //1.0 = default
-			bro.getSkills().update();
-		}
-		else
-		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.25); //1.0 = default
-			bro.getBaseProperties().DailyWageMult *= 1.25; //1.0 = default
-			bro.getSkills().update();
-		}
+
 	}
 
 	function onBuildPerkTree( _background )

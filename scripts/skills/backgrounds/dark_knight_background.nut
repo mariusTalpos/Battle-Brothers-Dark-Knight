@@ -1,13 +1,21 @@
-this.legend_dark_knight_background <- this.inherit("scripts/skills/backgrounds/character_background", {
+this.dark_knight_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
 	function create()
 	{
 		this.character_background.create();
 		this.m.ID = "background.dark_knight";
-		this.m.Name = "The Tenebrant Knight";
+		this.m.Name = "Dark Knight";
 		this.m.Icon = "ui/backgrounds/background_dark_knight.png";
-		this.m.HiringCost = 3500;
-		this.m.DailyCost = 0;
+		this.m.HiringCost = 220;
+		this.m.DailyCost = 25;
+		this.m.Titles = [
+			"the Fallen",
+			"the Dread Knight",
+			"the Blackguard",
+			"the Abyssal Champion",
+			"the Unholy",
+			"the Revenant"
+		];
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
 			::Legends.Traits.getID(::Legends.Trait.NightBlind),
@@ -101,35 +109,6 @@ this.legend_dark_knight_background <- this.inherit("scripts/skills/backgrounds/c
 			],
 			Magic = []
 		};
-		this.m.CustomPerkTree = [
-			[
-				::Legends.Perk.Student,
-				::Legends.Perk.Pathfinder,
-				// ::Legends.Perk.LegendComposure,
-				::Legends.Perk.Adrenaline,
-			],
-			[
-				::Legends.Perk.LegendTrueBeliever,
-			],
-			[
-			],
-			[],
-			[
-				::Legends.Perk.LegendBattleheart,
-				::Legends.Perk.LegendLionheart
-			],
-			[
-				::Legends.Perk.Fearsome,
-			],
-			[
-				::Legends.Perk.LegendPerfectFocus
-			],
-			[],
-			[],
-			[],
-			[]
-		];
-
 	}
 
 	//Default Male
@@ -188,35 +167,35 @@ this.legend_dark_knight_background <- this.inherit("scripts/skills/backgrounds/c
 	{
 		local c = {
 			Hitpoints = [
-				35,
+				15,
 				35
 			],
 			Bravery = [
-				16,
+				10,
 				16
 			],
 			Stamina = [
-				14,
+				8,
 				14
 			],
 			MeleeSkill = [
 				10,
-				13
+				15
 			],
 			RangedSkill = [
-				-2,
-				-3
+				-3,
+				-2
 			],
 			MeleeDefense = [
 				-5,
-				-5
+				0
 			],
 			RangedDefense = [
 				-10,
-				-15
+				-5
 			],
 			Initiative = [
-				10,
+				5,
 				10
 			]
 		};
@@ -227,44 +206,38 @@ this.legend_dark_knight_background <- this.inherit("scripts/skills/backgrounds/c
 	{
 		this.character_background.onAdded();
 		local actor = this.getContainer().getActor();
-		actor.setTitle("The Red Knight");
-		::Legends.Traits.grant(this, ::Legends.Trait.Loyal);
-		// ::Legends.Traits.grant(this, ::Legends.Trait.LegendLionheart);
+		actor.setTitle("Dark Knight");
 
 	}
 
-function onAddEquipment()
+	function onAddEquipment()
 	{
-		local talents = this.getContainer().getActor().getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.Hitpoints] = 3;
-		talents[this.Const.Attributes.MeleeSkill] = 3;
-		talents[this.Const.Attributes.Bravery] = 1;
-		this.getContainer().getActor().fillTalentValues(2, true);
 		local items = this.getContainer().getActor().getItems();
 
-		items.equip(this.new("scripts/items/weapons/legend_longsword"));
+		local weapons = [
+			[1, "weapons/legend_halberd"],
+			[1, "weapons/greatsword"],
+			[1, "weapons/greataxe"],
+			[1, "weapons/bardiche"],
+			[1, "weapons/two_handed_mace"],
+			[1, "weapons/two_handed_hammer"],
+			[1, "weapons/two_handed_flail"],
+			[1, "weapons/warscythe"]
+		];
+
+		items.equip(this.Const.World.Common.pickItem(weapons, "scripts/items/"));
 
 		items.equip(this.Const.World.Common.pickArmor([
 			[1, "mail_hauberk"],
-			[1, "basic_mail_shirt"],
 			[1, "scale_armor"],
 			[1, "reinforced_mail_hauberk"],
-			[1, "worn_mail_shirt"]
 		]));
 
-		local item = this.Const.World.Common.pickHelmet([
-			[1, "nasal_helmet"],
+		items.equip(this.Const.World.Common.pickHelmet([
 			[1, "nasal_helmet_with_mail"],
-			[1, "mail_coif"],
-			[1, "bascinet_with_mail"],
+			[1, "full_helm"],
 			[1, "closed_flat_top_helmet"]
-		]);
-		if (item != null)
-		{
-			item.onPaint(this.Const.Items.Paint.None);
-			items.equip(item);
-		}
+		]));
 
 	}
 });
