@@ -39,18 +39,11 @@
 					return "perk.nine_lives"
 				}
 			}
-			local ret = __original(_attacker, _skill, _hitInfo); // call original hook
-			this.m.Skills.getSkillByID = originalGetSkillById // restore function we switcharoo hooked
+			local ret = __original(_attacker, _skill, _hitInfo);
+			this.m.Skills.getSkillByID = originalGetSkillById;
 			return ret
 		}
 		::logInfo("[Dark Knight Mod] Conditions for living-dead not met. Calling original onDamageReceived without override.");
 		__original(_attacker, _skill, _hitInfo)
 	}
 });
-
-// if HP <= 0
-// if attack is not headshot | _hitInfo.BodyPart != this.Const.BodyPart.Head
-// trigger living dead & return null for original
-
-// if living dead active & is headshot trigger original
-// if living dead active & is not headshot return null for original
