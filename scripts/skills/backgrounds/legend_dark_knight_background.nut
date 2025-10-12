@@ -240,7 +240,6 @@ function onAddEquipment()
 		talents[this.Const.Attributes.Hitpoints] = 3;
 		talents[this.Const.Attributes.MeleeSkill] = 3;
 		talents[this.Const.Attributes.Bravery] = 1;
-		this.getContainer().getActor().fillTalentValues(2, true);
 		local items = this.getContainer().getActor().getItems();
 
 		items.equip(this.new("scripts/items/weapons/legend_longsword"));

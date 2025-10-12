@@ -213,7 +213,10 @@ this.dark_knight_background <- this.inherit("scripts/skills/backgrounds/characte
 	function onAddEquipment()
 	{
 		local items = this.getContainer().getActor().getItems();
-
+		local talents = this.getContainer().getActor().getTalents();
+		talents.resize(this.Const.Attributes.COUNT, 0);
+		talents[this.Const.Attributes.Hitpoints] = 3;
+		this.getContainer().getActor().fillTalentValues(2, true);
 		local weapons = [
 			[1, "weapons/legend_halberd"],
 			[1, "weapons/greatsword"],

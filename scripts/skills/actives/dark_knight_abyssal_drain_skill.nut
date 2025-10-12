@@ -20,7 +20,7 @@ this.dark_knight_abyssal_drain_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsVisibleTileNeeded = true;
 		this.m.ActionPointCost = 6;
-		this.m.FatigueCost = 20;
+		this.m.FatigueCost = 15;
 		this.m.MinRange = 0;
 		this.m.MaxRange = 4;
 		this.m.IsHidden = false;

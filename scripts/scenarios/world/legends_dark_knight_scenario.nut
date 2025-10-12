@@ -126,15 +126,15 @@ this.legends_dark_knight_scenario <- this.inherit("scripts/scenarios/world/start
 
 	function onHiredByScenario( bro )
 	{
-		if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Crusader))
-		{
-			bro.improveMood(1.5, "Joined a righteous cause");
- 			bro.getSprite("socket").setBrush("bust_base_crusader"); //custom base
-		}
-		else
-		{
-			bro.worsenMood(2.0, "Dislikes your sermons");
-		}
+	// 	if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Crusader))
+	// 	{
+	// 		bro.improveMood(1.5, "Joined a righteous cause");
+ 	// 		bro.getSprite("socket").setBrush("bust_base_crusader"); //custom base
+	// 	}
+	// 	else
+	// 	{
+	// 		bro.worsenMood(2.0, "Dislikes your sermons");
+	// 	}
 	}
 
 	function onUpdateHiringRoster( _roster )
@@ -142,8 +142,8 @@ this.legends_dark_knight_scenario <- this.inherit("scripts/scenarios/world/start
 		local garbage = [];
 		local bros = _roster.getAll();
 
-		this.addBroToRoster(_roster, "apostate_background", 4);
-		this.addBroToRoster(_roster, "wretch_background", 4);
+		// this.addBroToRoster(_roster, "apostate_background", 4);
+		// this.addBroToRoster(_roster, "wretch_background", 4);
 		this.addBroToRoster(_roster, "dark_knight_background", 8);
 
 		foreach( i, bro in bros )

@@ -2,7 +2,7 @@
 ::Const.Perks.DarkKnightClassTree <- {
 	ID = "DarkKnightClassTree",
 	Name = "Dark Knight",
-	Descriptions = ["Edgy"],
+	Descriptions = ["Dark Arts"],
 	Tree = [
 		[
 			::Const.Perks.PerkDefs.DarkKnightBloodWeapon
