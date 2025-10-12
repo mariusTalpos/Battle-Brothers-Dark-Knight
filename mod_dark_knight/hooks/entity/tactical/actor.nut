@@ -4,22 +4,23 @@
 		local livingDeadSkill = this.m.Skills.getSkillByID("perk.dark_knight_living_dead");
 		local livingDeadEffect = this.m.Skills.getSkillByID("effects.dark_knight_living_dead");
 		local _this = this
-		if (livingDeadSkill && _hitInfo.BodyPart != this.Const.BodyPart.Head)
+		if (livingDeadSkill)
 		{
 			::logInfo("[Dark Knight Mod] Condition passed: livingDeadSkill present AND hit is not head. Entering living-dead protection block.");
 			local originalGetSkillById = this.m.Skills.getSkillByID
 			this.m.Skills.getSkillByID = function(id)
 			{
-				if (id == "effects.lorekeeper_potion"){
-					if (!livingDeadSkill.isSpent())
+				if (id == "perk.nine_lives"){
+					if (!livingDeadSkill.isSpent() && _hitInfo.BodyPart != this.Const.BodyPart.Head)
 					{
 						livingDeadSkill.setSpent(true);
 						_hitInfo.BodyDamageMult = 0;
 						_this.m.Hitpoints = 1;
 						_this.getSkills().removeByType(this.Const.SkillType.DamageOverTime);
 						this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(_this) + " is too stubborn to die!");
+						return null;
 					}
-					if (livingDeadSkill.isSpent() && livingDeadEffect != null && livingDeadEffect.isActive)
+					if (livingDeadSkill.isSpent() && livingDeadEffect != null && livingDeadEffect.isActive && _hitInfo.BodyPart != this.Const.BodyPart.Head)
 					{
 						_hitInfo.BodyDamageMult = 0;
 						_this.m.Hitpoints = 1;
@@ -33,8 +34,9 @@
 						];
 						local msg = mockingMessages[this.Math.rand(0, mockingMessages.len() - 1)];
 						this.Tactical.EventLog.logEx(msg);
+						return null;
 					}
-					return null;
+					return "perk.nine_lives"
 				}
 			}
 			local ret = __original(_attacker, _skill, _hitInfo); // call original hook
