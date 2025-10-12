@@ -1,0 +1,1 @@
+Try to make Living Dead compatible with other forms of death protection.
