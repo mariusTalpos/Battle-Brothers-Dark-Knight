@@ -31,21 +31,20 @@ this.dark_knight_living_dead_effect <- this.inherit("scripts/skills/skill", {
 
 	function onUpdate(_properties) {
 		local actor = this.getContainer().getActor();
-		// actor.setIsAbleToDie(false); // this breaks vengeance compatibility
-		local currentHitpoints = actor.getHitpoints(); // this returns current hitpoints, not max
-		local hitpointMax = actor.getHitpointsMax(); // this returns actors max HP but without mods like colossus
+		local currentHitpoints = actor.getHitpoints();
+		local hitpointMax = actor.getHitpointsMax();
 
 		// Damage bonus based on missing hitpoints
 		local missingHP = hitpointMax - currentHitpoints;
-		local bonusMult = 1.0 + (missingHP * 0.002); // Example: +0.2% damage per missing HP
-		_properties.DamageTotalMult *= bonusMult; //this works
+		local bonusMult = 1.0 + (missingHP * 0.002);
+		_properties.IsAffectedByLosingHitpoints = false;
+		_properties.DamageTotalMult *= bonusMult;
 	}
 
 	function onTurnStart() {
 		local actor = this.getContainer().getActor();
 		actor.setFatigue(15)
-		// actor.setIsAbleToDie(true);
-		// this.removeSelf();
+		this.removeSelf();
 	}
 
 });
