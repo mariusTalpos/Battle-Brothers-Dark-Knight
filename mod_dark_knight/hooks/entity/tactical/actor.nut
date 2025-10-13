@@ -6,11 +6,10 @@
 		local _this = this
 		if (livingDeadSkill)
 		{
-			::logInfo("[Dark Knight Mod] Condition passed: livingDeadSkill present AND hit is not head. Entering living-dead protection block.");
-			local originalGetSkillById = this.m.Skills.getSkillByID
-			this.m.Skills.getSkillByID = function(id)
+			local originalGetSkillByID = this.m.Skills.getSkillByID
+			this.m.Skills.getSkillByID = function(ID)
 			{
-				if (id == "perk.nine_lives"){
+				if (ID == "perk.nine_lives"){
 					if (!livingDeadSkill.isSpent() && _hitInfo.BodyPart != this.Const.BodyPart.Head)
 					{
 						livingDeadSkill.setSpent(true);
@@ -36,14 +35,14 @@
 						this.Tactical.EventLog.logEx(msg);
 						return null;
 					}
-					return "perk.nine_lives"
+					return originalGetSkillByID("perk.nine_lives")
 				}
 			}
 			local ret = __original(_attacker, _skill, _hitInfo);
-			this.m.Skills.getSkillByID = originalGetSkillById;
+			this.m.Skills.getSkillByID = originalGetSkillByID;
 			return ret
 		}
-		::logInfo("[Dark Knight Mod] Conditions for living-dead not met. Calling original onDamageReceived without override.");
+		::logInfo("[Dark Knight Mod] Conditions for living-dead not met. Calling original onDamageReceived without overrIDe.");
 		__original(_attacker, _skill, _hitInfo)
 	}
 });
