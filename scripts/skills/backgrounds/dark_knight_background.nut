@@ -74,40 +74,37 @@ this.dark_knight_background <- this.inherit("scripts/skills/backgrounds/characte
 		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[2];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.MaceTree,
-				this.Const.Perks.FlailTree,
-				this.Const.Perks.HammerTree,
 				this.Const.Perks.AxeTree,
-				this.Const.Perks.SwordTree,
 				this.Const.Perks.TwoHandedTree,
+				this.Const.Perks.HammerTree,
+				this.Const.Perks.FlailTree,
+
+				this.Const.Perks.SwordTree,
+				this.Const.Perks.MaceTree,
 				this.Const.Perks.CleaverTree
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.ThrowingTree,
+				// this.Const.Perks.PolearmTree,
+				// this.Const.Perks.ThrowingTree,
 			],
 			Defense = [
 				this.Const.Perks.LightArmorTree,
 				this.Const.Perks.MediumArmorTree,
-				this.Const.Perks.HeavyArmorTree
+				// this.Const.Perks.HeavyArmorTree
 			],
 			Traits = [
 				this.Const.Perks.SturdyTree,
-				this.Const.Perks.IndestructibleTree,
-				this.Const.Perks.ViciousTree,
+				this.Const.Perks.Giant,
+				// this.Const.Perks.ViciousTree, // maybe remove
 				this.Const.Perks.LargeTree,
 				this.Const.Perks.MartyrTree,
-				this.Const.Perks.FitTree,
-				// this.Const.Perks.DeviousTree,
-				this.Const.Perks.TrainedTree,
+				this.Const.Perks.Aggressive
+				// this.Const.Perks.FitTree, // maybe remove
+				// this.Const.Perks.TrainedTree, // maybe remove
 			],
-			Enemy = [
-				this.Const.Perks.HexenTree,
-				this.Const.Perks.NoblesTree
-				this.Const.Perks.GhoulTree
-			],
-			Class = [
+			Enemy = [],
+			Class = [],
+			Magic = [
 				this.Const.Perks.DarkKnightClassTree
-			],
-			Magic = []
+			]
 		};
 	}
 
@@ -206,8 +203,6 @@ this.dark_knight_background <- this.inherit("scripts/skills/backgrounds/characte
 	{
 		this.character_background.onAdded();
 		local actor = this.getContainer().getActor();
-		actor.setTitle("Dark Knight");
-
 	}
 
 	function onAddEquipment()
@@ -225,7 +220,7 @@ this.dark_knight_background <- this.inherit("scripts/skills/backgrounds/characte
 			[1, "weapons/two_handed_mace"],
 			[1, "weapons/two_handed_hammer"],
 			[1, "weapons/two_handed_flail"],
-			[1, "weapons/warscythe"]
+			[1, "weapons/ancient/warscythe"]
 		];
 
 		items.equip(this.Const.World.Common.pickItem(weapons, "scripts/items/"));

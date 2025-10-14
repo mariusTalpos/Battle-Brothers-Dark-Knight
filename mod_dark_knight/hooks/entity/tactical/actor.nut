@@ -1,6 +1,11 @@
 ::DarkKnightOrigin.HooksMod.hook("scripts/entity/tactical/actor", function(q) {
 	q.onDamageReceived = @(__original) function(_attacker, _skill, _hitInfo)
 	{
+		::logDebug("##############################################################")
+		foreach (key,value in _hitInfo) {
+			::logDebug(key + ": " + value);
+		}
+		::logDebug("##############################################################")
 		local livingDeadSkill = this.m.Skills.getSkillByID("perk.dark_knight_living_dead");
 		local livingDeadEffect = this.m.Skills.getSkillByID("effects.dark_knight_living_dead");
 		local _this = this
@@ -46,3 +51,5 @@
 		__original(_attacker, _skill, _hitInfo)
 	}
 });
+
+// TODO: Don't remove vengeance effect when living dead procs & remove morale checks when living dead procs

@@ -39,6 +39,7 @@ this.legends_dark_knight_scenario <- this.inherit("scripts/scenarios/world/start
 		stash.removeByID("supplies.ground_grains");
 		stash.removeByID("supplies.ground_grains");
 		stash.add(this.new("scripts/items/supplies/armor_parts_item"));
+		stash.add(this.new("scripts/items/weapons/test_stick"))
 		stash.add(this.new("scripts/items/supplies/medicine_item"));
 		stash.add(this.new("scripts/items/supplies/cured_venison_item"));
 	}
